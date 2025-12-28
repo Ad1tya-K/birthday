@@ -1,0 +1,160 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday To U</title>
+  <link rel="stylesheet" href="bday.css">
+</head>
+<body>
+  <div class="page-decor">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="page-content">
+      <!-- all your sections: hero, memories, letter, cake, ending -->
+    </div>
+  </div>
+  <div class="side-decor left">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="side-decor right">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+    <audio id="bg-music" loop>
+  <source src="janmodire-ki-aar-debo-surer-akashe-alka-yagnik-and-shakti-thakur-bengali-movie-s_tkbXgmHA.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+  <section id="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Happy Birthday Sumi 🎉</h1>
+      <p>To Someone <b>Extraordinary in</b> Every Way,<br>
+        You are one of the brightest parts of my life.<br>
+    <B>HAPPY BIRTHDAY SUMIII!!</B></p>
+
+      <button id="toggleMusic">Play Music 🎵</button>
+    </div>
+
+    <div class="hero-photo-wrapper">
+  <div class="photo-frame">
+
+    <!-- Birthday girl photo -->
+    <img src="WhatsApp Image 2025-12-28 at 3.12.50 PM.jpeg"
+         alt="Birthday girl"
+         class="bday-photo">
+
+  </div>
+  <p id="photoHint" class="photo-hint">Click me👸</p>
+</div>
+
+</section>
+  <section id="memories">
+    <h2>Our Memories</h2>
+    <div class="cards">
+      <!-- Repeat this card for each memory -->
+      <div class="card">
+        <img src="WhatsApp Image 2025-12-28 at 3.12.50 PM(1).jpeg" alt="Memory 1">
+        <p><b>Chola's Twining</b><br>
+        One of the special memory for me from you... like idk how to explain but jab jab ye pic dekhta hu toh accha lagta h ofc ab tumhare pas time nhi h and busy hogaye sab but one day if possible esa moment firse recreate karenge...<br>Ofc memories ke liye or bhi things the add karne ko but these 2 images have a special memory for me atleast.. Baaki agar kabhi meetup hua toh that will be new chapter...<br> but till then i wish that you keep shining like a diamond and i will be always proud of you</p>
+      </div>
+      <div class="card">
+        <img src="WhatsApp Image 2025-12-28 at 3.55.37 PM.jpeg" alt="Memory 2">
+        <p><b>Your Cutie Si Drawing 😊</b><br> Ab ye drawing toh i dont think so ki tumhe yaad hogi ki tumhari ye drawing h and what was the context behind it but ye drawing is the 2nd most cherish gift from U...and ye drawing was one of the first thing u sent me when we started talking during March apart those selfies u used to send... </p>
+    </div>
+  </section>
+
+  <section id="message">
+  <h2>A Little Letter</h2>
+
+  <div class="letter-container">
+    <div class="letter-box" id="letterBox">
+      <p class="letter-hint">Click to Open 💌</p>
+    </div>
+
+    <div class="letter-content" id="letterContent">
+      <p>
+        <!-- Put your real message here -->
+        Dear Sumi, <br><br> 
+        I know life is hectic with all your medical stuff and the things you are going through right now.
+        But on your special day, I just want to remind you of how amazing you are.
+        Your strength, kindness, and determination inspire me every day.
+        I hope 2026 brings you closer to your dreams and fills your life with happiness and success...<br><br>
+        You are one of the most <b>incredible, adorable, beautiful, talented, charming</b> people I know..<br>
+        and I feel so lucky to have you in my life.
+        You deserve all the best things in the world.
+        Since we can't be together right now,
+        but I just wanted you to have a small corner of the internet
+        that reminds you how proud I am of you and how much you mean to me.<br>
+        Happy birthday once again Sumi!<br>
+        <b> Keep shining</b> and never forget how special & dear you are to me.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+  <section id="future">
+    <h2>Things We Still Have To Do🤩</h2>
+    <ul>
+        <li>Offline Meetup🥲</li>
+      <li>Travelling to your favourite place😁</li>
+      <li>Those late night stories you wanted to share🫣</li>
+      <li>Watch your favourite movie together😎</li>
+    </ul>
+  </section>
+  <!-- Make a Wish heading moved here so it sits above the cake -->
+  <h2 class="center-heading">Make a Wish 🎂</h2>
+  <section id="cake">
+  <div class="cake-wrapper">
+    <div class="cake">
+      <div class="candles">
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+      </div>
+      <div class="cake-body">
+        <div class="layer layer-top"></div>
+        <div class="layer layer-middle"></div>
+        <div class="layer layer-bottom"></div>
+      </div>
+      <div class="cake-plate"></div>
+    </div>
+  </div>
+</section>
+
+
+  <section id="ending">
+    <h2>Always Here For <b>You</b></h2>
+    <p>Even if we are far, you’re never alone.I am just a call away..<br> Happy birthday again 💙</p>
+  </section>
+
+  <script src="bday.js"></script>
+  <!-- Photo modal (opened when clicking the birthday image) -->
+  <div class="photo-modal" id="photoModal" aria-hidden="true">
+    <div class="photo-modal-backdrop" id="photoModalBackdrop"></div>
+    <div class="photo-modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" id="photoModalClose" aria-label="Close">×</button>
+      <img src="WhatsApp Image 2025-12-28 at 3.12.50 PM.jpeg" alt="Birthday girl large" id="modalPhoto" class="modal-photo">
+      <div class="modal-audio-controls">
+        <button id="photoAudioToggle">Play Message 🎵</button>
+        <audio id="photo-audio">
+          <source src="WhatsApp Ptt 2025-12-28 at 3.36.11 PM.ogg" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

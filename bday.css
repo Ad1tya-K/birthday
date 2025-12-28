@@ -1,0 +1,713 @@
+/* style.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: #fdf6ff;
+  color: #333;
+  line-height: 1.6;
+}
+
+section {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#hero {
+  text-align: center;
+  padding-top: 60px;
+}
+
+#hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+#hero p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+#hero button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: #ff8fb1;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#hero button:hover {
+  background: #ff6b98;
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #b34787;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+#message p,
+#ending p {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  #hero h1 {
+    font-size: 2rem;
+  }
+}
+#toggleMusic {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: #b58bff;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+#toggleMusic:hover {
+  background: #9a6bff;
+}
+.letter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Closed letter box */
+.letter-box {
+  width: 260px;
+  height: 140px;
+  background: linear-gradient(135deg, #ff9a9e, #fecfef);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.letter-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.letter-box:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.letter-box:hover::before {
+  opacity: 1;
+}
+
+.letter-hint {
+  color: #ff6b98; /* pink */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Hidden letter content */
+.letter-content {
+  max-width: 600px;
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transform-origin: top center;
+  transform: scaleY(0.1);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    max-height 0.4s ease;
+
+  /* ensure long words wrap and text stays inside the box */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* When opened */
+.letter-content.open {
+  opacity: 1;
+  transform: scaleY(1);
+  /* allow more content; fallback to scroll when content exceeds this height */
+  max-height: 900px;
+  overflow: auto;
+}
+/* Layout: text + photo side by side */
+.hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hero-text {
+  flex: 1 1 260px;
+}
+
+.hero-photo-wrapper {
+  flex: 0 0 200px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Photo frame */
+.photo-frame {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: transparent; /* allow PNG transparency to show through */
+}
+
+/* Make the photo clickable */
+.photo-frame {
+  cursor: pointer;
+}
+
+/* Small hint under the photo */
+.photo-hint {
+  text-align: center;
+  margin-top: 8px;
+  color: #ff6b98;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+}
+.photo-hint:hover {
+  text-decoration: underline;
+}
+
+/* Photo modal styles */
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  display: none; /* shown when active */
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+.photo-modal.open {
+  display: flex;
+}
+.photo-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+.photo-modal-content {
+  position: relative;
+  max-width: 92vw;
+  max-height: 92vh;
+  background: rgba(255,255,255,0.98);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-photo {
+  max-width: 80vw;
+  max-height: 60vh;
+  border-radius: 8px;
+  object-fit: contain;
+}
+.modal-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal-audio-controls {
+  margin-top: 12px;
+}
+.modal-audio-controls button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #ff8fb1;
+  color: white;
+  cursor: pointer;
+}
+
+/* Birthday girl image */
+.bday-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Party hat image positioned above head */
+.party-hat {
+  position: absolute;
+  width: 80px; /* adjust based on image */
+  left: 50%;
+  top: -80px;          /* start above the frame */
+  transform: translateX(-50%) rotate(-10deg);
+  pointer-events: none;
+  opacity: 0;
+
+  animation: hatDrop 0.9s ease-out forwards;
+  animation-delay: 0.8s; /* starts shortly after page load */
+}
+
+/* Hat drop animation */
+@keyframes hatDrop {
+  0% {
+    top: -80px;
+    opacity: 0;
+    transform: translateX(-50%) rotate(-10deg) scale(0.8);
+  }
+  70% {
+    top: -10px;
+    opacity: 1;
+    transform: translateX(-50%) rotate(5deg) scale(1.05);
+  }
+  100% {
+    top: -5px; /* final position just on top of the head */
+    opacity: 1;
+    transform: translateX(-50%) rotate(0deg) scale(1);
+  }
+}
+
+/* Mobile tweak */
+@media (max-width: 600px) {
+  .hero-content {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-photo-wrapper {
+    margin-bottom: 10px;
+  }
+}
+/* Base style for both poppers */
+.party-popper {
+  position: absolute;
+  width: 60px;          /* adjust to fit */
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: center bottom;
+  animation: popperBounce 1s ease-out forwards, popperConfetti 1.2s ease-out forwards;
+}
+
+/* Left popper position */
+.popper-left {
+  left: -25px;          /* tweak for your image */
+  bottom: -10px;
+  transform: rotate(-25deg) scale(0.9);
+  animation-delay: 0.9s; /* slightly after hat */
+}
+
+/* Right popper position */
+.popper-right {
+  right: -25px;         /* tweak for your image */
+  bottom: -10px;
+  transform: rotate(25deg) scale(0.9);
+  animation-delay: 1s;
+}
+
+/* Popper “bounce in” animation */
+@keyframes popperBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.6) rotate(var(--popper-rotate, 0deg));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.05) rotate(var(--popper-rotate, 0deg));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(var(--popper-rotate, 0deg));
+  }
+}
+
+/* Little shake / confetti feel */
+@keyframes popperConfetti {
+  0% { filter: drop-shadow(0 0 0 rgba(255, 163, 196, 0.0)); }
+  50% { filter: drop-shadow(0 0 10px rgba(255, 163, 196, 0.8)); }
+  100% { filter: drop-shadow(0 0 0 rgba(255, 163, 196, 0.0)); }
+}
+#cake {
+  text-align: center;
+  /* Reserve extra space so the candle flames (absolutely positioned) don't overlap the heading */
+  padding-top: 120px;
+  position: relative;
+}
+
+/* Ensure the section heading appears above absolutely-positioned candle flames
+   Use an inline-block with the page background so the flame visuals are visually covered. */
+#cake h2 {
+  position: relative;
+  z-index: 9999;
+  margin-top: 0;
+  /* allow flames to remain visible while the text appears above them */
+  background: transparent;
+  display: inline-block;
+  padding: 0 6px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.12);
+}
+
+.cake-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Cake container */
+.cake {
+  position: relative;
+  width: 220px;
+  margin: 0 auto;
+  animation: cakePopIn 0.9s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  z-index: 1;
+}
+
+/* Pop-in on appearance */
+@keyframes cakePopIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Plate */
+.cake-plate {
+  width: 260px;
+  height: 18px;
+  background: #e0e0f5;
+  border-radius: 999px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Cake body */
+.cake-body {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+/* Layers */
+.layer {
+  width: 220px;
+  height: 40px;
+  border-radius: 16px;
+  margin: 0 auto;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.layer-top {
+  background: #ffe0e6;
+}
+
+.layer-middle {
+  background: #ffb3c6;
+  margin-top: -10px;
+}
+
+.layer-bottom {
+  background: #ff8fa3;
+  margin-top: -10px;
+}
+
+/* Candles holder */
+.candles {
+  position: absolute;
+  /* normal candle position above the cake; lowered so candle bases sit on the top layer */
+  top: -40px; /* position candles so they appear attached to the cake */
+  z-index: 1; /* keep candles below the heading */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 14px;
+}
+
+/* Candle body */
+.candle {
+  width: 10px;
+  height: 35px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffffff,
+    #ffffff 6px,
+    #ffd6e0 6px,
+    #ffd6e0 12px
+  );
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Flame */
+.flame {
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  width: 12px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 20%, #fff7d6 0%, #ffd54f 40%, #ff9100 100%);
+  border-radius: 50% 50% 50% 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.9);
+  animation: flameFlicker 0.8s infinite alternate ease-in-out;
+  z-index: 2;
+}
+
+/* Centered heading placed between #future and #cake */
+.center-heading {
+  text-align: center;
+  color: #b34787;
+  font-size: 1.5rem;
+  margin: 18px 0 8px 0;
+}
+
+/* Flicker animation */
+@keyframes flameFlicker {
+  0% {
+    transform: translateX(-50%) scaleY(0.9) scaleX(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) scaleY(1.1) scaleX(0.95);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scaleY(0.95) scaleX(1.05);
+    opacity: 0.9;
+  }
+}
+.page-decor {
+  /* Make decorations overlay the viewport without affecting document flow */
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1; /* keep content above decorations */
+}
+
+/* Base style for all corners */
+.corner {
+  position: fixed;
+  width: 80px;           /* adjust based on PNG size */
+  height: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 0;
+  opacity: 0.85;
+  pointer-events: none;
+  animation: cornerFloat 4s ease-in-out infinite alternate;
+}
+
+/* Corner positions */
+.corner-tl {
+  top: 0;
+  left: 0;
+  background-image: url("images/corner-top-left.png");
+}
+
+.corner-tr {
+  top: 0;
+  right: 0;
+  background-image: url("images/corner-top-right.png");
+}
+
+.corner-bl {
+  bottom: 0;
+  left: 0;
+  background-image: url("images/corner-bottom-left.png");
+}
+
+.corner-br {
+  bottom: 0;
+  right: 0;
+  background-image: url("images/corner-bottom-right.png");
+}
+
+/* Gentle floating animation */
+@keyframes cornerFloat {
+  0% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(6px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(-2px) rotate(0deg);
+  }
+}
+
+/* On small screens, make them smaller so they don't cover content */
+@media (max-width: 600px) {
+  .corner {
+    width: 48px;
+    height: 48px;
+    opacity: 0.7;
+  }
+}
+/* ===============================
+   SIDE DECORATIONS
+================================ */
+
+/* Side gradient panels */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  width: 90px;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 182, 193, 0.35),
+    rgba(255, 182, 193, 0)
+  );
+}
+
+body::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(173, 216, 230, 0.35),
+    rgba(173, 216, 230, 0)
+  );
+}
+
+/* Decorative floating elements */
+.side-decor {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 70px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.side-decor.left {
+  left: 10px;
+}
+
+.side-decor.right {
+  right: 10px;
+}
+
+/* Floating dots / hearts */
+.side-decor span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 105, 180, 0.6);
+  border-radius: 50%;
+  animation: floatUp 10s linear infinite;
+}
+
+.side-decor span:nth-child(odd) {
+  background: rgba(135, 206, 250, 0.6);
+}
+
+/* Random placement */
+.side-decor span:nth-child(1) { top: 80%; left: 20px; animation-delay: 0s; }
+.side-decor span:nth-child(2) { top: 60%; left: 5px; animation-delay: 2s; }
+.side-decor span:nth-child(3) { top: 40%; left: 25px; animation-delay: 4s; }
+.side-decor span:nth-child(4) { top: 20%; left: 10px; animation-delay: 6s; }
+.side-decor span:nth-child(5) { top: 90%; left: 30px; animation-delay: 8s; }
+
+/* Floating animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Soft glow border */
+.page-decor {
+  border-left: 4px solid rgba(255, 182, 193, 0.3);
+  border-right: 4px solid rgba(173, 216, 230, 0.3);
+  box-shadow:
+    inset 10px 0 20px rgba(255, 182, 193, 0.2),
+    inset -10px 0 20px rgba(173, 216, 230, 0.2);
+}
